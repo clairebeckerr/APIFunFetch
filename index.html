@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+	<title>API Fun: Dog Facts</title>
+	<meta charset="utf-8"/>
+  <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+	<script>
+  //FETCH METHOD
+  function fetchFacts(){
+        //call fetch
+        res = fetch("https://www.fishwatch.gov/api/species/red-snapper")
+        .then (res => res.text())
+        .then (data => 
+           {
+          //process JSON data
+          data = JSON.parse(data);
+          //retrieve specifically location 
+          data = data[0].Location;
+             document.getElementById("info").innerHTML += data + "</br>";
+           })
+        .catch (error => console.log(error))
+    } // end fetch facts
+	</script>
+</head>
+<body>
+	<h1>Red Snapper</h1>
+	<div id="info">.</div>
+  <div id = "questions">
+    The API I selected is the Fish Watch API which gives information on different species of fish. I chose specifically Red Snapper. <br>  
+    <br>I found this API through the github page of public API's, the API is from https://www.fishwatch.gov/developers . <br>
+    <br>For the API request I used two options: AJAX and fetch. AJAX used the GET method and XMLHttpRequest() to retrieve the data. Fetch used the fetch() function to retrieve data. The difference between the two is that AJAX makes it easier to moniter the progress of the API retrieval but fetch is more simple. <br>
+    <br> This API would be helpful when conducting research on what places are ideal for fishing for Red Snapper. It also would be helpful to help researchers note where to find Red Snappers to monitor their population.
+    <br>
+  </div>
+	<script language="javascript">
+    fetchFacts();
+	</script>
+</body>
+</html>
